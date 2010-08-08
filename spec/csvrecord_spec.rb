@@ -7,8 +7,7 @@ describe "CsvRecord" do
   end
   
   it "should raise an error if the file is not a csv file" do
-    pending
-    CsvRecord.make('products.cv').should raise_error(RuntimeError)
+    CsvRecord.make('products.cv').should raise_error(RuntimeError, "Not a csv file")
   end
   
   it "should be able to create a class determined by the name of the file" do
