@@ -24,7 +24,7 @@ describe "CsvRecord" do
   it "should remove escaping quotes when creating the objects for a csv file" do
     records = Author.read
     records.each do |record|
-      record.firstname.include?("\\\"").should == false
+      record.firstname.include?("\"").should == false
     end
   end
   
