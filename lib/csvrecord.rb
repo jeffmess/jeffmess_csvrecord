@@ -27,6 +27,8 @@ class CsvRecord
       class_eval do
         define_method(:initialize) do |*values| 
           header.each_with_index do |accessor, i|
+            accessor.chop!.reverse!.chop!.reverse! if ((accessor.start_with? "\"") and (accessor.end_with? "\""))
+            values[i].chop!.reverse!.chop!.reverse! if ((values[i].start_with? "\"") and (values[i].end_with? "\""))
             self.class.class_eval { attr_accessor accessor.downcase.strip.to_sym }
             instance_variable_set("@#{accessor.downcase.strip}", values[i].strip)
           end
