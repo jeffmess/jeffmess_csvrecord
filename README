@@ -1,1 +1,29 @@
 A small program I wrote to learn about meta programming.
+
+Todo
+----
+
+1. Still need to refactor the code to read csv files in other directories.
+2. Replace header spaces with underscores for instance variables.
+3. Package as Gem
+
+How to use
+----------
+
+jeffmess$ cat author.csv 
+"FirstName",LastName,age
+Paul,"Johnson",87
+"Douglas","Hofstadter",60
+jeffmess$ irb
+>> require 'lib/csvrecord'
+=> true
+>> CsvRecord.make("author.csv")
+=> Author
+>> records = Author.read
+=> [#<Author:0x1010e7930 @lastname="Johnson", @age="87", @firstname="Paul">, #<Author:0x1010e6e90 @lastname="Hofstadter", @age="60", @firstname="Douglas">]
+>> records.each do |author|
+?>   puts author.firstname + " " + author.lastname
+>> end
+Paul Johnson
+Douglas Hofstadter
+=>
