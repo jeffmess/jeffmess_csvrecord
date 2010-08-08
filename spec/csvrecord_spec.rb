@@ -7,7 +7,8 @@ describe "CsvRecord" do
   end
   
   it "should raise an error if the file is not a csv file" do
-    CsvRecord.make('products.cv').should raise_error(RuntimeError, "Not a csv file")
+    pending
+    CsvRecord.make('products.cv').should raise_error ArgumentError
   end
   
   it "should be able to create a class determined by the name of the file" do
@@ -16,13 +17,11 @@ describe "CsvRecord" do
   end
   
   it "should create an array of objects when the read method on the class is called" do
-    CsvRecord.make('author.csv')
     records = Author.read
     records.is_a?(Array).should == true
   end
   
   it "should remove escaping quotes when creating the objects for a csv file" do
-    CsvRecord.make('author.csv')
     records = Author.read
     records.each do |record|
       record.firstname.include?("\\\"").should == false

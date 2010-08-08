@@ -15,7 +15,7 @@ end
 
 class CsvRecord
   def self.make(file)
-    raise "Not a csv file" unless file.end_with? "csv"
+    raise ArgumentError, "Not a csv file" unless file.end_with? "csv"
     
     data = File.new(file)
     header = data.gets.chomp.split(",")
