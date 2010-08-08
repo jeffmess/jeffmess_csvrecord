@@ -1,21 +1,15 @@
-module Magic
-  def self.included(base)
-    base.extend ClassMethods
-  end
-
-  module ClassMethods    
-    def read
-      data = File.new("#{self.to_s.downcase}.csv")
-      data.gets
-      
-      array = data.collect do |line|
-        values = line.split(",")
-        new(*values)
-      end
-      
-      data.close
-      array
+module CsvMod  
+  def read
+    data = File.new("#{self.to_s.downcase}.csv")
+    data.gets
+    
+    array = data.collect do |line|
+      values = line.split(",")
+      new(*values)
     end
+    
+    data.close
+    array
   end
 end
 
@@ -28,7 +22,7 @@ class CsvRecord
     data.close
     
     create_class(file.sub(".csv", '')) do
-      include Magic
+      extend CsvMod
       
       class_eval do
         define_method(:initialize) do |*values| 
@@ -45,11 +39,4 @@ class CsvRecord
     klass = Class.new &block
     Object.const_set class_name.capitalize, klass
   end  
-end
-
-CsvRecord.make("contact.csv")
-records = Contact.read
-
-records.each do |contact|
-  puts contact.firstname + " " + contact.lastname
 end
