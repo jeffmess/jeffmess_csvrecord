@@ -5,8 +5,7 @@ A small program I wrote to learn about meta programming.
 ==Todo
 
 	1. Still need to refactor the code to read csv files in other directories.
-	2. Replace header spaces with underscores for instance variables.
-	3. Package as Gem
+	2. Package as Gem
 
 == Usage
 

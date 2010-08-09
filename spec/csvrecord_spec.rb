@@ -28,4 +28,9 @@ describe "CsvRecord" do
     end
   end
   
+  it "should replace spaces in column names with underscores so that attributes are not invalid" do
+    records = Author.read
+    records.first.instance_variable_defined?(:@date_of_birth).should == true
+  end
+  
 end
